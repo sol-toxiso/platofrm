@@ -1,0 +1,343 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Near-black with a warm (fire) touch – primary/secondary/accent stay as the color pop */
+  :root {
+    --background: 24 8% 4%;
+    --foreground: 0 0% 98%;
+    --card: 24 8% 6%;
+    --card-foreground: 0 0% 98%;
+    --popover: 24 8% 6%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 38 92% 50%;
+    --primary-foreground: 24 8% 4%;
+    --secondary: 0 72% 51%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 24 8% 10%;
+    --muted-foreground: 24 5% 58%;
+    --accent: 43 96% 56%;
+    --accent-foreground: 24 8% 4%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 24 10% 14%;
+    --input: 24 10% 14%;
+    --ring: 38 92% 50%;
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 24 8% 4%;
+    --foreground: 0 0% 98%;
+    --card: 24 8% 6%;
+    --card-foreground: 0 0% 98%;
+    --popover: 24 8% 6%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 38 92% 50%;
+    --primary-foreground: 24 8% 4%;
+    --secondary: 0 72% 51%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 24 8% 10%;
+    --muted-foreground: 24 5% 58%;
+    --accent: 43 96% 56%;
+    --accent-foreground: 24 8% 4%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 24 10% 14%;
+    --input: 24 10% 14%;
+    --ring: 38 92% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom gradient animations */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary)) 50%, hsl(var(--secondary)) 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 8s ease infinite;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #F59E0B 0%, #EF4444 50%, #DC2626 100%);
+}
+
+.gradient-bg-secondary {
+  background: linear-gradient(135deg, #EF4444 0%, #DC2626 50%, #F59E0B 100%);
+}
+
+.gradient-bg-primary {
+  background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+}
+
+.gradient-bg-accent {
+  background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
+}
+
+/* Toxiso fire theme */
+.fire-gradient-text {
+  background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 25%, #EF4444 55%, #DC2626 85%, #B91C1C 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 8s ease infinite;
+}
+
+.fire-gradient-bg {
+  background: linear-gradient(135deg, #F59E0B 0%, #EF4444 50%, #DC2626 100%);
+}
+
+.fire-glow {
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.4), 0 0 40px rgba(239, 68, 68, 0.2);
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Glass morphism effect – toxiso fire */
+.glass {
+  background: rgba(245, 158, 11, 0.06);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.dark .glass {
+  background: rgba(245, 158, 11, 0.06);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+/* Neon glow effects – fire theme */
+.neon-glow {
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.45), 0 0 40px rgba(239, 68, 68, 0.25), 0 0 60px rgba(239, 68, 68, 0.15);
+}
+
+.neon-glow-cyan {
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.5), 0 0 40px rgba(239, 68, 68, 0.3);
+}
+
+.neon-glow-gold {
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.5), 0 0 40px rgba(245, 158, 11, 0.3), 0 0 60px rgba(239, 68, 68, 0.2);
+}
+
+/* Animated gradient border – fire */
+.gradient-border {
+  position: relative;
+  background: hsl(var(--background));
+  border-radius: var(--radius);
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  padding: 2px;
+  background: linear-gradient(135deg, #F59E0B, #EF4444, #DC2626);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Wave animations */
+@keyframes wave-animation {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(-25%) translateY(10px);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes wave-flow {
+  0% {
+    d: path("M0,160 Q160,120 320,160 T640,160 L640,320 L0,320 Z");
+  }
+  25% {
+    d: path("M0,180 Q160,140 320,180 T640,180 L640,320 L0,320 Z");
+  }
+  50% {
+    d: path("M0,160 Q160,100 320,160 T640,160 L640,320 L0,320 Z");
+  }
+  75% {
+    d: path("M0,140 Q160,120 320,140 T640,140 L640,320 L0,320 Z");
+  }
+  100% {
+    d: path("M0,160 Q160,120 320,160 T640,160 L640,320 L0,320 Z");
+  }
+}
+
+@keyframes morphing-blob {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    transform: translate(20px, -20px) scale(1.1);
+  }
+  50% {
+    border-radius: 70% 30% 50% 50% / 30% 50% 70% 60%;
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  75% {
+    border-radius: 40% 60% 30% 60% / 60% 40% 60% 30%;
+    transform: translate(10px, 10px) scale(1.05);
+  }
+}
+
+@keyframes liquid-wave {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  33% {
+    transform: translateX(30px) translateY(-30px) rotate(120deg);
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  66% {
+    transform: translateX(-30px) translateY(30px) rotate(240deg);
+    border-radius: 70% 30% 50% 50% / 30% 50% 70% 60%;
+  }
+  100% {
+    transform: translateX(0) translateY(0) rotate(360deg);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+}
+
+.wave-animated {
+  animation: wave-animation 20s ease-in-out infinite;
+}
+
+.morphing-blob {
+  animation: morphing-blob 8s ease-in-out infinite;
+  filter: blur(60px);
+}
+
+.liquid-wave {
+  animation: liquid-wave 12s ease-in-out infinite;
+}
+
+/* Floating particles */
+@keyframes float-particle {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translate(20px, -30px) rotate(90deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-20px, -60px) rotate(180deg);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translate(30px, -30px) rotate(270deg);
+    opacity: 0.5;
+  }
+}
+
+.float-particle {
+  animation: float-particle 15s ease-in-out infinite;
+}
+
+/* Wave path animation */
+.wave-path {
+  animation: wave-flow 8s ease-in-out infinite;
+}
+
+/* Wave button hover effect */
+@keyframes wave-ripple {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.wave-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.35) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.wave-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Wave text effect – fire */
+.wave-text {
+  background: linear-gradient(
+    90deg,
+    #FBBF24 0%,
+    #F59E0B 25%,
+    #EF4444 50%,
+    #DC2626 75%,
+    #F59E0B 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 3s linear infinite;
+}
+
+/* Interactive wave cursor follower – fire */
+.wave-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.6) 0%, transparent 70%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  transition: transform 0.1s ease-out;
+  z-index: 9999;
+}
